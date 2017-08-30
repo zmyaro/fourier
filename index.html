@@ -94,7 +94,12 @@
 				for (var base = 2; base <= 36; base++) {
 					if ((base10Num.toString(base).match(FOUR_REGEX) || []).length > startingFours) {
 						var baseStr = ('' + base).split('').map(digit => SUBSCRIPTS[digit]).join('');
-						alert(base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] + ' is fourier in base ' + base + ': ' + base10Num.toString(base) + baseStr);
+						alert(base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] +
+							' is fourier in base ' + base + ':' +
+							'\r\n' +
+							base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] +
+							' = ' +
+							base10Num.toString(base) + baseStr);
 						return;
 					}
 				}
