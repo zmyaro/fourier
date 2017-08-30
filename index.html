@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fourier Transform</title>
+		
+		<link rel="stylesheet" type="text/css" href="lib/material-elements.css" />
+		<link rel="stylesheet" type="text/css" href="lib/material-depth.css" />
+		<link rel="stylesheet" type="text/css" href="lib/material-widgets.css" />
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				height: 100%;
+			}
+			body {
+				margin: 0;
+				min-height: 100%;
+			}
+			sup,
+			sub {
+				font-size: 80%;
+			}
+			
+			h1,
+			p {
+				margin-top: 0;
+			}
+			
+			.card {
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.pronunciation {
+				font-style: italic;
+				opacity: 0.5;
+			}
+			
+			#inputForm fieldset {
+				border: 0 none;
+				padding: 0;
+			}
+			#inputForm input {
+				margin-top: 8px;
+			}
+			#inputForm button {
+				float: right;
+			}
+			
+			footer {
+				font-size: 60%;
+				text-align: center;
+				
+				padding: 1em;
+				
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+		</style>
+		
+		<script type="text/javascript" src="lib/material-touch.js"></script>
+		<script type="text/javascript">
+			const FOUR_REGEX = /4/g,
+				SUBSCRIPTS = ['\u2080', '\u2081', '\u2082', '\u2083', '\u2084', '\u2085', '\u2086', '\u2087', '\u2088', '\u2089'];
+			
+			var inputForm;
+			
+			window.onload = function () {
+				inputForm = document.getElementById('inputForm');
+				
+				inputForm.onsubmit = function (e) {
+					e.preventDefault();
+					
+					var base10Num = parseInt(inputForm.base10Num.value);
+					if (!isNaN(base10Num)) {
+						inputForm.base10Num.value = base10Num;
+						inputForm.inputs.disabled = true;
+						makeFourier(base10Num);
+						inputForm.inputs.disabled = false;
+					} else {
+						alert('Please enter a base 10 number.');
+					}
+				};
+			};
+			function makeFourier(base10Num) {
+				var startingFours = (base10Num.toString(10).match(FOUR_REGEX) || []).length;
+				
+				for (var base = 2; base <= 36; base++) {
+					if ((base10Num.toString(base).match(FOUR_REGEX) || []).length > startingFours) {
+						var baseStr = ('' + base).split('').map(digit => SUBSCRIPTS[digit]).join('');
+						alert(base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] + ' is fourier in base ' + base + ': ' + base10Num.toString(base) + baseStr);
+						return;
+					}
+				}
+				
+				alert(base10Num + ' is not fourier in any other base between 2 and 36.');
+			}
+		</script>
+	</head>
+	<body>
+		<section class="card z1">
+			<h1>Fourier Transform</h1>
+			<p class="pronunciation">for &bullet; ee &bullet; er &nbsp; trans &bullet; form</p>
+			<p>When you take a number and convert it to a base system where it has more fours, thus making it &ldquo;fourier.&rdquo;  If you pick the base with the most fours, the number is said to be &ldquo;fouriest.&rdquo;</p>
+		</section>
+		<form id="inputForm" class="card z1">
+			<fieldset name="inputs">
+				<input type="number" name="base10Num" placeholder="Number in base 10">
+				<button type="submit">Make Fourier</button>
+			</fieldset>
+		</form>
+		<footer>
+			Created by <a href="https://zmyaro.com" target="_blank">Zachary Yaro</a>
+			&nbsp;&bullet;&nbsp;
+			This is all <a href="https://www.smbc-comics.com/?id=2874" target="_blank">Zach Weinersmith</a>'s fault.
+		</footer>
+	</body>
+</html>
