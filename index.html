@@ -70,9 +70,6 @@
 		
 		<script type="text/javascript" src="lib/material-touch.js"></script>
 		<script type="text/javascript">
-			const FOUR_REGEX = /4/g,
-				SUBSCRIPTS = ['\u2080', '\u2081', '\u2082', '\u2083', '\u2084', '\u2085', '\u2086', '\u2087', '\u2088', '\u2089'];
-			
 			var inputForm;
 			
 			window.onload = function () {
@@ -93,22 +90,40 @@
 				};
 			};
 			function makeFourier(base10Num) {
+				const FOUR_REGEX = /4/g;
+				
 				var startingFours = (base10Num.toString(10).match(FOUR_REGEX) || []).length;
 				
-				for (var base = 2; base <= 36; base++) {
+				// Test bases in a random order.
+				var bases = range(5, 36);
+				bases.sort(() => Math.random() - 0.5);
+				
+				for (var i = 0; i < bases.length; i++) {
+					var base = bases[i];
 					if ((base10Num.toString(base).match(FOUR_REGEX) || []).length > startingFours) {
-						var baseStr = ('' + base).split('').map(digit => SUBSCRIPTS[digit]).join('');
-						alert(base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] +
+						alert(base10Num + makeSubscript(10) +
 							' is fourier in base ' + base + ':' +
 							'\r\n' +
-							base10Num + SUBSCRIPTS[1] + SUBSCRIPTS[0] +
+							base10Num + makeSubscript(10) +
 							' = ' +
-							base10Num.toString(base) + baseStr);
+							base10Num.toString(base) + makeSubscript(base));
 						return;
 					}
 				}
 				
 				alert(base10Num + ' is not fourier in any other base between 2 and 36.');
+			}
+			function range(min, max) {
+				var arr = [];
+				for (var i = min; i <= max; i++) {
+					arr.push(i);
+				}
+				return arr;
+			}
+			function makeSubscript(num) {
+				const SUBSCRIPTS = ['\u2080', '\u2081', '\u2082', '\u2083', '\u2084', '\u2085', '\u2086', '\u2087', '\u2088', '\u2089'];
+				
+				return ('' + num).split('').map(digit => SUBSCRIPTS[digit]).join('');
 			}
 		</script>
 	</head>
