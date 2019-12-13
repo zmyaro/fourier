@@ -1,0 +1,27 @@
+{
+	"short_name": "Fourier",
+	"name": "Fourier Transform",
+	"description": "Make numbers more foury.",
+	
+	"start_url": "/",
+	"display": "standalone",
+	
+	"theme_color": "#fafafa",
+	"background_color": "#fafafa",
+	
+	"icons": [
+		{
+			"src": "logo/128.png",
+			"sizes": "128x128",
+			"type": "image/png"
+		}, {
+			"src": "logo/256.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		}, {
+			"src": "logo/512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
