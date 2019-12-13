@@ -1,0 +1,15 @@
+CACHE MANIFEST
+# 2019-12-13, v1
+index.html
+manifest.webapp
+lib/material-depth.css
+lib/material-elements.css
+lib/material-touch.js
+lib/material-widgets.css
+logo/128.png
+logo/256.png
+logo/512.png
+logo/favicon.ico
+
+NETWORK:
+*
