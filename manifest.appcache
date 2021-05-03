@@ -2,6 +2,7 @@ CACHE MANIFEST
 # 2019-12-13, v1
 index.html
 manifest.webapp
+lib/material-dark.css
 lib/material-depth.css
 lib/material-elements.css
 lib/material-touch.js
